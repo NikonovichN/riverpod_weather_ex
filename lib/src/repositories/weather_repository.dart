@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../providers/api.dart';
-import '../entities/entites.dart';
+import '../entities/entities.dart';
 
 final weatherRepository = Provider(WeatherRepository.new);
 
