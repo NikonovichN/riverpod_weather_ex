@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'core/core.dart';
+import 'navigation/routes.dart';
 
 class WeatherApp extends StatelessWidget {
   const WeatherApp({super.key});

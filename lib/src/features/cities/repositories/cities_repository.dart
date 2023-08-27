@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../providers/api.dart';
-import '../entities/entities.dart';
+import 'package:riverpod_weather_ex/src/providers/api.dart';
+import '../domain/entities/cities.dart';
 
 final citiesRepository = Provider(CitiesRepository.new);
 

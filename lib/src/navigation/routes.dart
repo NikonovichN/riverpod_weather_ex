@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/screens.dart';
+import '../features/features.dart';
 
 final routes = {
   '/': (BuildContext context) => const HomeScreen(),

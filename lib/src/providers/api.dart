@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart';
 
-import '../core/api/api.dart';
+import '../api/api.dart';
 
 final httpClient = Provider((_) => Client());
 
