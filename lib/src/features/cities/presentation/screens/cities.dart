@@ -2,15 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../repositories/repositories.dart';
-import '../../entities/entities.dart';
-
-final citiesData = FutureProvider.autoDispose<Cities>(
-  (ref) async {
-    final repository = ref.watch(citiesRepository);
-    return await repository.fetchCities();
-  },
-);
+import '../providers/screen_providers.dart';
 
 class CitiesScreen extends HookConsumerWidget {
   const CitiesScreen({super.key});
