@@ -9,8 +9,13 @@ final citiesRepository = Provider(CitiesRepository.new);
 
 class CitiesRepository {
   final Ref _ref;
+  City? _currentCity;
 
-  const CitiesRepository(Ref ref) : _ref = ref;
+  CitiesRepository(Ref ref) : _ref = ref;
+
+  set setCurrentCity(City city) => _currentCity = city;
+
+  City? get getCurrentCity => _currentCity;
 
   Future<Cities> fetchCities() async {
     final api = _ref.read(citiesAPI);
