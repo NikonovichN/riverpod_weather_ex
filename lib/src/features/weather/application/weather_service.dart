@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../cities/domain/entities/cities.dart';
 import '../domain/entities/weather.dart';
 import '../repositories/weather_repository.dart';
 import '../../cities/repositories/cities_repository.dart';
@@ -10,6 +11,8 @@ class WeatherService {
   final Ref _ref;
 
   const WeatherService(Ref ref) : _ref = ref;
+
+  City? get getCurrentCity => _ref.read(cityRepository).currentCity;
 
   Future<Weather?> fetchWeather() async {
     final currentCity = _ref.read(cityRepository).currentCity;

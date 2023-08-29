@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../cities/domain/entities/cities.dart';
 import '../../application/weather_service.dart';
 import '../../domain/entities/weather.dart';
 import '../../../cities/presentation/providers/screen_providers.dart';
@@ -12,4 +13,8 @@ final weatherDataProvider = FutureProvider.autoDispose<Weather?>(
     final weatherService = ref.watch(weatherServiceProvider);
     return await weatherService.fetchWeather();
   },
+);
+
+final getCurrentCityProvider = Provider.autoDispose<City?>(
+  (ref) => ref.read(weatherServiceProvider).getCurrentCity,
 );
