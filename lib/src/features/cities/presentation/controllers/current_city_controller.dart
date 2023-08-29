@@ -4,14 +4,16 @@ import '../../domain/entities/cities.dart';
 import '../../repositories/cities_repository.dart';
 
 class CurrentCityController extends StateNotifier<City?> {
-  final CitiesRepository _citiesRepository;
+  final Ref _ref;
 
-  CurrentCityController(CitiesRepository citiesRepository)
-      : _citiesRepository = citiesRepository,
+  CurrentCityController(Ref ref)
+      : _ref = ref,
         super(null);
 
   void setCity(City city) {
-    _citiesRepository.setCurrentCity = city;
-    state = _citiesRepository.getCurrentCity;
+    final repository = _ref.read(cityRepository);
+
+    repository.setCurrentCity(city);
+    state = repository.currentCity;
   }
 }

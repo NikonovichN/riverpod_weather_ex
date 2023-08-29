@@ -1,11 +1,15 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../repositories/weather_repository.dart';
+import '../../application/weather_service.dart';
 import '../../domain/entities/weather.dart';
+import '../../../cities/presentation/providers/screen_providers.dart';
 
-final weatherData = FutureProvider.autoDispose<Weather>(
+final weatherDataProvider = FutureProvider.autoDispose<Weather?>(
   (ref) async {
-    final repository = ref.watch(weatherRepository);
-    return await repository.fetchWeather();
+    // TODO: try to figure out is it right place/approach
+    ref.watch(currentCityProvider);
+
+    final weatherService = ref.watch(weatherServiceProvider);
+    return await weatherService.fetchWeather();
   },
 );

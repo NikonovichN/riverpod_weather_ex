@@ -14,31 +14,25 @@ class HomeScreen extends HookConsumerWidget {
         centerTitle: true,
         title: const Text('Weather'),
       ),
-      body: ListView(
-        children: [
-          ref.watch(weatherData).map(
-                data: (data) => Column(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () =>
-                          Navigator.of(context).pushNamed('/cities'),
-                      child: const Text('Go to cities'),
-                    ),
-                    const SizedBox(height: 20),
-                    ...data.value.weatherList
-                        .map(
-                          (e) => Text(e.toString()),
-                        )
-                        .toList(),
-                  ],
-                ),
-                error: (error) => Center(child: Text(error.toString())),
-                loading: (_) => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-        ],
-      ),
+      body: ref.watch(weatherDataProvider).map(
+            data: (data) => ListView(
+              children: data.value?.weatherList == null
+                  ? [
+                      ElevatedButton(
+                        onPressed: () =>
+                            Navigator.of(context).pushNamed('/cities'),
+                        child: const Text('Choose city to show weather'),
+                      ),
+                    ]
+                  : data.value!.weatherList
+                      .map(
+                        (e) => Text(e.toString()),
+                      )
+                      .toList(),
+            ),
+            error: (error) => Center(child: Text(error.toString())),
+            loading: (_) => const Center(child: CircularProgressIndicator()),
+          ),
     );
   }
 }
