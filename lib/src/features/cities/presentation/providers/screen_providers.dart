@@ -12,5 +12,5 @@ final citiesDataProvider = FutureProvider.autoDispose<Cities>(
 );
 
 final currentCityProvider = StateNotifierProvider<CurrentCityController, City?>(
-  (ref) => CurrentCityController(ref.watch(citiesRepository)),
+  (ref) => CurrentCityController(ref),
 );

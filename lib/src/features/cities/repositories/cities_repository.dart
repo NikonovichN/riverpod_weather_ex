@@ -5,17 +5,22 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_weather_ex/src/providers/api.dart';
 import '../domain/entities/cities.dart';
 
-final citiesRepository = Provider(CitiesRepository.new);
+final cityRepository = Provider((ref) => CityRepository());
+
+final citiesRepository = Provider((ref) => CitiesRepository(ref));
+
+class CityRepository {
+  City? currentCity;
+
+  CityRepository() : currentCity = null;
+
+  void setCurrentCity(City city) => currentCity = city;
+}
 
 class CitiesRepository {
   final Ref _ref;
-  City? _currentCity;
 
   CitiesRepository(Ref ref) : _ref = ref;
-
-  set setCurrentCity(City city) => _currentCity = city;
-
-  City? get getCurrentCity => _currentCity;
 
   Future<Cities> fetchCities() async {
     final api = _ref.read(citiesAPI);

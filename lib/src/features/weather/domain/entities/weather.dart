@@ -47,3 +47,27 @@ class WeatherStatus with _$WeatherStatus {
   factory WeatherStatus.fromJson(Map<String, dynamic> json) =>
       _$WeatherStatusFromJson(json);
 }
+
+extension ExtWeatherDetails on WeatherDetails {
+  DateTime convertToLocalDate() {
+    return DateTime.fromMillisecondsSinceEpoch(date.toInt() * 1000);
+  }
+
+  String getLocalTime() {
+    final parsedDate = convertToLocalDate();
+    return '${parsedDate.hour}:${parsedDate.minute}';
+  }
+
+  String getLocalDate() {
+    final parsedDate = convertToLocalDate();
+    return '${parsedDate.day}.${parsedDate.month}.${parsedDate.year}';
+  }
+
+  String tempToCelsius() {
+    return '${main.temp} °C';
+  }
+
+  String feelsLikeToCelsius() {
+    return '${main.tempFeelsLike} °C';
+  }
+}
